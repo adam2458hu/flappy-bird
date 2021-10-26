@@ -1,0 +1,130 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: black;
+	font-family: Arial,sans-serif;
+	margin: 0;
+}
+
+.preload * {
+	-webkit-transition: none !important;
+	-moz-transition: none !important;
+	-ms-transition: none !important;
+	-o-transition: none !important;
+}
+
+#game {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 400px;
+	height: 600px;
+	background-color: #228EF2;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+#score {
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: white;
+	font-weight: bold;
+	font-size: 40px;
+	z-index: 99;
+}
+
+#info-box {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%,-100%);
+	background-color: #F8E28C;
+	border-radius: 10px;
+	border: 1px solid black;
+	text-align: center;
+	white-space: nowrap;
+	padding: 20px;
+	z-index: 99;
+	transition: 0.7s;
+}
+
+#info-box.opened {
+	transform: translate(-50%,-50%);
+	top: 50%;
+}
+
+#bird {
+	position: absolute;
+	bottom: 285px;
+	right: 170px;
+	width: 60px;
+	height: 40px;
+	background-image: url("assets/images/flappy_bird.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	transform: rotate(0deg);
+	transition: transform 0s;
+	z-index: 98;
+}
+
+#bird.jumping {
+	transform: rotate(-45deg);
+	transition: transform 0s;
+}
+
+#bird.falling {
+	transform: rotate(45deg);
+	transition: transform 0.5s;
+}
+
+#ground {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 120%;
+	height: 100px;
+	background-image: url("assets/images/ground.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	z-index: 97;
+}
+
+#game.running #ground {
+	animation: moving 1s linear infinite;
+}
+
+.pipe {
+	position: absolute;
+	width: 40px;
+	height: 200px;
+	background-image: url("assets/images/pipe.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	z-index: 96;
+}
+
+.pipe.down {
+	bottom: 0;
+	left: 0;
+}
+
+.pipe.above {
+	top: 0;
+	left: 0;
+	transform: rotate(180deg);
+}
+
+@keyframes moving {
+	from {transform: translateX(0)}
+	to {transform: translateX(-68px)}
+}
+
+@keyframes jumping {
+	from {transform: rotate(-45deg)}
+	to {transform: rotate(0)}
+}
